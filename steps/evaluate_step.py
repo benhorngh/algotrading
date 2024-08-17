@@ -9,8 +9,7 @@ from common import utils, cache_manager, stocks_data
 def evaluate_strategy(
     run_id: str, cutoff_date: date, symbols: list[str], hold_days: int
 ) -> float:
-    logging.info("Evaluating")
-    print(symbols)
+    logging.info(f"Evaluating symbols {symbols}")
     future_trading_dates = utils.get_future_trading_dates(cutoff_date, hold_days)
     stocks_actual_data = stocks_data.get_global_stocks(symbols)
     buy_date = future_trading_dates[0]
@@ -39,9 +38,9 @@ def evaluate_strategy(
         percent=total_profit_percent,
     )
 
-    print("total buy", total_buy)
-    print("total profit", total_profit)
-    print("total profit percent", total_profit_percent)
+    logging.info(f"Total spent: { total_buy}")
+    logging.info(f"Total profit: {total_profit}")
+    logging.info(f"Total profit percent: {total_profit_percent}")
     return total_profit_percent
 
 

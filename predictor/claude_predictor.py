@@ -26,7 +26,6 @@ def predict(stock: pd.DataFrame, days: int) -> list[float]:
         system="You are a theoretical analyst AI trained to predict number sequences with 100% accuracy.",
         messages=[{"role": "user", "content": [{"type": "text", "text": prompt}]}],
     )
-    print(message.content)
     predicted_prices = [
         float(price.strip()) for price in message.content[0].text.split(",")
     ]

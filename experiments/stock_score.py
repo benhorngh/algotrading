@@ -42,7 +42,6 @@ def calculate_symbol_score(
             elif symbol not in ideal_strategy and symbol not in predictor_strategy:
                 symbol_to_score[symbol] += 1
         end_date = end_date - timedelta(days=style.days_delta)
-    pprint(symbol_to_score)
     save_scores(symbol_to_score)
 
 
@@ -55,9 +54,9 @@ def save_scores(symbol_to_score: dict[str, float]):
 
 def main():
     calculate_symbol_score(
-        stocks.SYMBOLS[:10],
+        stocks.SYMBOLS[10:20],
         PredictorOption.lstm,
-        number_of_tests=10,
+        number_of_tests=20,
         style=investment_style.WEEKLY,
     )
 

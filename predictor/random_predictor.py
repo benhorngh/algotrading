@@ -10,5 +10,4 @@ def predict(stock: pd.DataFrame, days: int) -> list[float]:
     current_value = stock.loc[str(max_day)].values[0]
     future = [current_value for i in range(days)]
     future[-1] = random.choice([current_value / 2, current_value * 2])
-    print(future)
     return future

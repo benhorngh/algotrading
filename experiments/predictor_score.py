@@ -37,9 +37,7 @@ def calculate_predictor_score(
         iteration = len(iteration_to_percent) - i - 1
         starting += starting * (iteration_to_percent[iteration] / 100)
     total_percent = starting / 1000 * 100 - 100
-    print(
-        f"Total percent profit percent is {total_percent} for {number_of_tests} iteration"
-    )
+    print(f"Total profit percent is {total_percent} for {number_of_tests} iteration")
 
 
 # x = """ABT,21

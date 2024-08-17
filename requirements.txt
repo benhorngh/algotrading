@@ -1,0 +1,10 @@
+black==24.8.0
+pandas==2.2.2
+prophet==1.1.5
+pydantic==2.8.2
+pydantic_core==2.20.1
+numpy==1.26.4
+pandas_market_calendars==4.4.1
+yfinance==0.2.41
+scikit-learn==1.5.1
+keras==3.5.0

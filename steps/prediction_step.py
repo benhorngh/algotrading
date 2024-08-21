@@ -3,6 +3,7 @@ from enum import Enum
 
 import pandas as pd
 
+from common import utils, cache_manager, stocks_data
 from predictor import (
     prophet_predictor,
     ideal_predictor,
@@ -14,7 +15,6 @@ from predictor import (
     logistic_predictor,
     lstm_predictor,
 )
-from common import utils, cache_manager, stocks_data
 
 
 class PredictorOption(str, Enum):

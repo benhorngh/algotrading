@@ -8,3 +8,4 @@ pandas_market_calendars==4.4.1
 yfinance==0.2.41
 scikit-learn==1.5.1
 keras==3.5.0
+anthropic==0.34.0

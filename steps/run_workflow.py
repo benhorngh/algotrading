@@ -1,11 +1,10 @@
 import logging
-
-from steps import config_step, evaluate_step, prediction_step, strategy_step
-from common import logger_setup, stocks_data
-from steps.config_step import RunConfig
-from common.stocks import SYMBOLS
-
 from datetime import date, datetime
+
+from common import logger_setup, stocks_data
+from common.stocks import SYMBOLS
+from steps import config_step, evaluate_step, prediction_step, strategy_step
+from steps.config_step import RunConfig
 
 logger_setup.init_logger()
 

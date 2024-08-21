@@ -54,9 +54,9 @@ def calculate_predictor_score(
 
 def main():
     calculate_predictor_score(
-        stocks.SYMBOLS[:30],
+        stocks.SYMBOLS_50_150,
         PredictorOption.lstm,
-        number_of_tests=8,
+        number_of_tests=3,
         style=investment_style.WEEKLY,
     )
 

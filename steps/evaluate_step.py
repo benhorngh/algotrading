@@ -3,7 +3,7 @@ from datetime import date
 
 import pandas as pd
 
-from common import utils, cache_manager, stocks_data
+from common import utils, cache_manager, stocks_data, consts
 
 
 def evaluate_strategy(
@@ -21,6 +21,7 @@ def evaluate_strategy(
         buy_price = stocks_actual_data[symbol][str(buy_date)]
         sell_price = stocks_actual_data[symbol][str(sell_date)]
         profit = sell_price - buy_price
+        profit = profit - consts.IBKR_INVESTMENT_FEE
         profit_percent = profit / buy_price * 100
         symbol_to_percent[symbol] = profit_percent
         total_buy += buy_price

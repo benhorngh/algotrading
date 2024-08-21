@@ -1,103 +1,109 @@
-SYMBOLS = sorted(
-    list(
-        {
-            "AAPL",  # Apple Inc.
-            "MSFT",  # Microsoft Corp.
-            "GOOGL",  # Alphabet Inc.
-            "AMZN",  # Amazon.com Inc.
-            "META",  # Meta Platforms Inc.
-            "NVDA",  # NVIDIA Corp.
-            "INTC",  # Intel Corp.
-            "CRM",  # Salesforce Inc.
-            "ADBE",  # Adobe Inc.
-            "NOW",  # ServiceNow Inc.
-            "JPM",  # JPMorgan Chase & Co.
-            "BAC",  # Bank of America Corp.
-            "WFC",  # Wells Fargo & Co.
-            "GS",  # Goldman Sachs Group Inc.
-            "MS",  # Morgan Stanley
-            "AXP",  # American Express Co.
-            "SCHW",  # Charles Schwab Corp.
-            "C",  # Citigroup Inc.
-            "BLK",  # BlackRock Inc.
-            "JNJ",  # Johnson & Johnson
-            "PFE",  # Pfizer Inc.
-            "MRK",  # Merck & Co. Inc.
-            "ABT",  # Abbott Laboratories
-            "UNH",  # UnitedHealth Group Inc.
-            "TMO",  # Thermo Fisher Scientific Inc.
-            "AMGN",  # Amgen Inc.
-            "BMY",  # Bristol-Myers Squibb Co.
-            "GILD",  # Gilead Sciences Inc.
-            "BIIB",  # Biogen Inc.
-            "TSLA",  # Tesla Inc.
-            "HD",  # Home Depot Inc.
-            "NKE",  # Nike Inc.
-            "MCD",  # McDonald's Corp.
-            "SBUX",  # Starbucks Corp.
-            "LOW",  # Lowe's Companies Inc.
-            "GM",  # General Motors Co.
-            "TGT",  # Target Corp.
-            "DIS",  # Walt Disney Co.
-            "BA",  # Boeing Co.
-            "CAT",  # Caterpillar Inc.
-            "UNP",  # Union Pacific Corp.
-            "MMM",  # 3M Co.
-            "HON",  # Honeywell International Inc.
-            "LMT",  # Lockheed Martin Corp.
-            "GE",  # General Electric Co.
-            "RTX",  # Raytheon Technologies Corp.
-            "DE",  # Deere & Co.
-            "FDX",  # FedEx Corp.
-            "GE",
-            "SLB",
-            "KR",
-            "EOG",
-            "CVS",
-            "ROKU",
-            "SQ",
-            "DOCU",
-            "TWLO",
-            "FIVN",
-            "TTD",
-            "JCI",
-            "DUK",
-            "DAL",
-            "INTC",
-            "MS",
-            "BMY",
-            "NEE",
-            "PLAB",  # Photronics Inc.
-            "SANM",  # Sanmina Corporation
-            "MHO",  # M/I Homes Inc.
-            "LGIH",  # LGI Homes Inc.
-            "WSBF",  # Waterstone Financial Inc.
-            "MRTN",  # Marten Transport Ltd.
-            "CVGW",  # Calavo Growers Inc.
-            "KOP",  # Koppers Holdings Inc.
-            "JAKK",  # JAKKS Pacific Inc.
-            "CIX",  # CompX International Inc.
-            "DCO",  # Ducommun Incorporated
-            "MMSI",  # Merit Medical Systems Inc.
-            "NSSC",  # NAPCO Security Technologies Inc.
-            "PRDO",  # Perdoceo Education Corporation
-            "PPC",  # Pilgrim's Pride Corporation
-            "SCVL",  # Shoe Carnival Inc.
-            "THR",  # Thermon Group Holdings Inc.
-            "TRC",  # Tejon Ranch Co.
-            "TRNS",  # Transcat Inc.
-            "UVSP",  # Univest Financial Corporation
-            "VICR",  # Vicor Corporation
-            "WGO",  # Winnebago Industries Inc.
-            "XPEL",  # XPEL Inc.
-            "ZUMZ",  # Zumiez Inc.
-            "CBZ",  # CBIZ Inc.
-            "LANC",  # Lancaster Colony Corporation
-            "MOV",  # Movado Group Inc.
-            "NATH",  # Nathan's Famous Inc.
-            "RICK",  # RCI Hospitality Holdings Inc.
-            "SBH",  # Sally Beauty Holdings Inc.
-            "TPB",  # Turning Point Brands Inc.
-        }
-    )
-)
+SYMBOLS = {
+    "AAPL": 226.50999450683594,
+    "ABT": 110.7699966430664,
+    "ADBE": 562.25,
+    "AMGN": 328.54998779296875,
+    "AMZN": 178.8800048828125,
+    "AXP": 253.0800018310547,
+    "BA": 172.10000610351562,
+    "BAC": 38.689998626708984,
+    "BIIB": 205.49000549316406,
+    "BLK": 860.969970703125,
+    "BMY": 48.97999954223633,
+    "C": 61.310001373291016,
+    "CAT": 343.29998779296875,
+    "CBZ": 71.16999816894531,
+    "CIX": 26.18000030517578,
+    "CRM": 261.8399963378906,
+    "CVGW": 24.84000015258789,
+    "CVS": 58.900001525878906,
+    "DAL": 40.119998931884766,
+    "DCO": 64.16999816894531,
+    "DE": 372.5899963378906,
+    "DIS": 89.73999786376953,
+    "DOCU": 56.869998931884766,
+    "DUK": 112.37999725341797,
+    "EOG": 125.25,
+    "FDX": 288.44000244140625,
+    "FIVN": 34.16999816894531,
+    "GE": 169.99000549316406,
+    "GILD": 74.75,
+    "GM": 45.97999954223633,
+    "GOOGL": 167.17999267578125,
+    "GS": 497.3399963378906,
+    "HD": 367.2699890136719,
+    "HON": 200.07000732421875,
+    "INTC": 20.989999771118164,
+    "JAKK": 23.09000015258789,
+    "JCI": 70.30000305175781,
+    "JNJ": 160.16000366210938,
+    "JPM": 214.52000427246094,
+    "KOP": 37.529998779296875,
+    "KR": 52.040000915527344,
+    "LANC": 198.2100067138672,
+    "LGIH": 102.80999755859375,
+    "LMT": 557.010009765625,
+    "LOW": 240.3300018310547,
+    "MCD": 285.6300048828125,
+    "META": 526.72998046875,
+    "MHO": 147.67999267578125,
+    "MMM": 127.69999694824219,
+    "MMSI": 90.91999816894531,
+    "MOV": 23.969999313354492,
+    "MRK": 115.13999938964844,
+    "MRTN": 17.1200008392334,
+    "MS": 100.77999877929688,
+    "MSFT": 424.79998779296875,
+    "NATH": 74.47000122070312,
+    "NEE": 78.9800033569336,
+    "NKE": 83.55999755859375,
+    "NOW": 838.219970703125,
+    "NSSC": 54.83000183105469,
+    "NVDA": 127.25,
+    "PFE": 28.899999618530273,
+    "PLAB": 23.479999542236328,
+    "PPC": 43.540000915527344,
+    "PRDO": 22.479999542236328,
+    "RICK": 43.5099983215332,
+    "ROKU": 61.9900016784668,
+    "RTX": 117.94999694824219,
+    "SANM": 68.95999908447266,
+    "SBH": 13.100000381469727,
+    "SBUX": 93.01000213623047,
+    "SCHW": 64.83999633789062,
+    "SLB": 44.029998779296875,
+    "SQ": 64.87999725341797,
+    "TGT": 144.3300018310547,
+    "THR": 29.360000610351562,
+    "TMO": 614.5399780273438,
+    "TPB": 39.72999954223633,
+    "TRC": 17.450000762939453,
+    "TRNS": 120.58999633789062,
+    "TSLA": 221.10000610351562,
+    "TTD": 102.13999938964844,
+    "TWLO": 60.59000015258789,
+    "UNH": 580.6500244140625,
+    "UNP": 246.5,
+    "UVSP": 26.5,
+    "VICR": 36.9900016784668,
+    "WFC": 56.150001525878906,
+    "WGO": 56.66999816894531,
+    "WSBF": 14.130000114440918,
+    "XPEL": 41.9900016784668,
+    "ZUMZ": 27.43000030517578,
+    "SCVL": 42.7599983215332,
+}
+
+SYMBOLS_0_50 = sorted([s[0] for s in SYMBOLS.items() if 0 <= s[1] < 50])
+SYMBOLS_50_150 = sorted([s[0] for s in SYMBOLS.items() if 50 <= s[1] < 150])
+SYMBOLS_150_300 = sorted([s[0] for s in SYMBOLS.items() if 150 <= s[1] < 300])
+SYMBOLS_300_10000 = sorted([s[0] for s in SYMBOLS.items() if 300 <= s[1] < 1000])
+
+SYMBOLS = sorted(list(SYMBOLS.keys()))
+
+if __name__ == "__main__":
+    print("SYMBOLS: ", len(SYMBOLS))
+    print("SYMBOLS_0_50: ", len(SYMBOLS_0_50))
+    print("SYMBOLS_50_150: ", len(SYMBOLS_50_150))
+    print("SYMBOLS_150_300: ", len(SYMBOLS_150_300))
+    print("SYMBOLS_300_10000: ", len(SYMBOLS_300_10000))

@@ -2,13 +2,15 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
-from common import utils
+from predictor import predictor_utils
 
 CHUNK_SIZE = 28
 
 
-def get_x_y(stock: pd.DataFrame, days: int) -> (list[float], list[int], list[float]):
-    symbol = stock.columns[0]
+def get_x_y(
+    stock: pd.DataFrame, hold_days: int
+) -> (list[float], list[int], list[float]):
+    symbol = predictor_utils.get_symbol(stock)
     stock = stock.reset_index()
     stock = stock.tail(len(stock) - len(stock) % CHUNK_SIZE)
     chunks = [stock[i : i + CHUNK_SIZE] for i in range(0, len(stock), CHUNK_SIZE)]
@@ -18,7 +20,7 @@ def get_x_y(stock: pd.DataFrame, days: int) -> (list[float], list[int], list[flo
     for i in range(len(chunks) - 1):
         next_chunk = chunks[i + 1]
         buy_price = next_chunk.loc[0].values[1]
-        sell_price = next_chunk.loc[days].values[1]
+        sell_price = next_chunk.loc[hold_days].values[1]
         if sell_price > buy_price:
             y.append(1)
         else:
@@ -28,31 +30,10 @@ def get_x_y(stock: pd.DataFrame, days: int) -> (list[float], list[int], list[flo
     return x, y, x_future
 
 
-# class Logistic:
-#     model = LogisticRegression(class_weight='balanced', max_iter=1000, solver='saga')
-#     scaler = StandardScaler()
-#     fitted = False
+def predict(stock: pd.DataFrame, hold_days: int) -> list[float]:
+    current_value = predictor_utils.get_last_price(stock)
 
-
-# def pre_predict(stocks: pd.DataFrame, days: int):
-#     if Logistic.fitted:
-#         return
-#     x, y = [], []
-#     for symbol in stocks.columns:
-#         _x, _y, _x_future = get_x_y(stocks[[symbol]], days)
-#         x += _x
-#         y += _y
-#
-#     x = Logistic.scaler.fit_transform(x)
-#     Logistic.model.fit(x, y)
-#     Logistic.fitted = True
-
-
-def predict(stock: pd.DataFrame, days: int) -> list[float]:
-    max_day = utils.get_stock_last_day(stock)
-    current_value = stock.loc[str(max_day)].values[0]
-
-    x, y, x_future = get_x_y(stock, days)
+    x, y, x_future = get_x_y(stock, hold_days)
 
     model = LogisticRegression()
     scaler = StandardScaler()
@@ -65,7 +46,7 @@ def predict(stock: pd.DataFrame, days: int) -> list[float]:
     predictions = model.predict_proba(x_future)
     should_invest = predictions[0][1] > 0.6
     print(f"proba: {predictions[0][1]}")
-    future = [current_value for i in range(days)]
+    future = [current_value for i in range(hold_days)]
     if should_invest:
         future[-1] = current_value + (current_value * predictions[0][1])
     else:

@@ -1,15 +1,17 @@
 import logging
 
+import keras
 import numpy as np
 import pandas as pd
+from keras import layers
 from sklearn.preprocessing import MinMaxScaler
 
-import keras
-from keras import layers
+from predictor import predictor_utils
 
 
-def predict(stock: pd.DataFrame, days: int):
-    symbol = stock.columns[0]
+def predict(stock: pd.DataFrame, hold_days: int):
+    symbol = predictor_utils.get_symbol(stock)
+    current_value = predictor_utils.get_last_price(stock)
     df = stock[symbol].values.reshape(-1, 1)
     scaler = MinMaxScaler(feature_range=(0, 1))
     scaled_data = scaler.fit_transform(df)
@@ -54,21 +56,23 @@ def predict(stock: pd.DataFrame, days: int):
     rmse = np.sqrt(np.mean((predictions - y_test) ** 2))
 
     last_60_days = scaled_data[-60:]
-    x_forecast = np.array(last_60_days)
-    x_forecast = np.reshape(x_forecast, (x_forecast.shape[0], x_forecast.shape[1], 1))
+    X_forecast = []
+    X_forecast.append(last_60_days)
+    X_forecast = np.array(X_forecast)
+    X_forecast = np.reshape(X_forecast, (X_forecast.shape[0], X_forecast.shape[1], 1))
 
     forecasted_prices = []
 
-    for _ in range(days):
-        price = model.predict(x_forecast)
+    for _ in range(hold_days):
+        price = model.predict(X_forecast)
         forecasted_prices.append(price[0][0])
-        x_forecast = np.roll(x_forecast, -1)
-        x_forecast[0][-1] = price
+        X_forecast = np.roll(X_forecast, -1)
+        X_forecast[0][-1] = price
 
     forecasted_prices = scaler.inverse_transform(
         np.array(forecasted_prices).reshape(-1, 1)
     )
-    logging.info(f"rmse is {rmse}")
+    logging.info(f"rmse is {rmse}, which is about {rmse / current_value * 100}%")
     forecasted_prices = [float(p) for p in forecasted_prices]
-    # forecasted_prices = [p - (rmse / 2) for p in forecasted_prices]
+    forecasted_prices = [p - (rmse / 2) for p in forecasted_prices]
     return forecasted_prices

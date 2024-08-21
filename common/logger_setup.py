@@ -9,6 +9,9 @@ dummy = logging.LogRecord("dummy", 0, "dummy", 0, None, None, None, None, None)
 reserved_keys = list(dummy.__dict__.keys()) + ["message", "asctime"]
 
 
+LOGS_PATH = "logs"
+
+
 class DynamicExtraFormatter(logging.Formatter):
     def format(self, record):
         result = super().format(record)
@@ -20,11 +23,11 @@ class DynamicExtraFormatter(logging.Formatter):
 
 
 def init_logger():
-    os.makedirs("../logs", exist_ok=True)
+    os.makedirs(LOGS_PATH, exist_ok=True)
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     file_handler = RotatingFileHandler(
-        "../logs/logs.log", maxBytes=1 * 1024 * 1024, backupCount=1
+        os.path.join(LOGS_PATH, "logs.log"), maxBytes=1 * 1024 * 1024, backupCount=1
     )
 
     formatter = DynamicExtraFormatter(

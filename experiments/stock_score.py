@@ -1,11 +1,10 @@
 from datetime import timedelta
-from pprint import pprint
 
+from common import cache_manager, utils
+from common import stocks, investment_style
 from common.investment_style import InvestmentStyle
 from steps import strategy_step, run_workflow
 from steps.prediction_step import PredictorOption
-from common import stocks, investment_style
-from common import cache_manager, utils
 
 
 def calculate_symbol_score(
@@ -54,9 +53,9 @@ def save_scores(symbol_to_score: dict[str, float]):
 
 def main():
     calculate_symbol_score(
-        stocks.SYMBOLS[10:20],
-        PredictorOption.lstm,
-        number_of_tests=20,
+        stocks.SYMBOLS_50_150,
+        PredictorOption.ideal,
+        number_of_tests=5,
         style=investment_style.WEEKLY,
     )
 

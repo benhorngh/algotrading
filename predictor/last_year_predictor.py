@@ -2,15 +2,15 @@ from datetime import timedelta
 
 import pandas as pd
 
-from common import utils
+from predictor import predictor_utils
 
 
-def predict(stock: pd.DataFrame, days: int) -> list[float]:
-    symbol = stock.columns[0]
-    max_day = utils.get_stock_last_day(stock)
+def predict(stock: pd.DataFrame, hold_days: int) -> list[float]:
+    symbol = predictor_utils.get_symbol(stock)
+    max_day = predictor_utils.get_last_day(stock)
     last_year = max_day - timedelta(days=365)
 
-    future_trading_dates = utils.get_future_trading_dates(last_year, days)
+    future_trading_dates = predictor_utils.get_future_trading_days(stock, hold_days)
     last_year_data = stock.loc[[str(f) for f in future_trading_dates]]
 
     last_year_price = None

@@ -72,7 +72,7 @@ def predict(stock: pd.DataFrame, hold_days: int):
     forecasted_prices = scaler.inverse_transform(
         np.array(forecasted_prices).reshape(-1, 1)
     )
-    logging.info(f"rmse is {rmse}, which is about {rmse / current_value * 100}%")
+    logging.info(f"rmse is {rmse}, which is about {round(rmse / current_value * 100, 2)}%")
     forecasted_prices = [float(p) for p in forecasted_prices]
     forecasted_prices = [p - (rmse / 2) for p in forecasted_prices]
     return forecasted_prices

@@ -2,7 +2,7 @@ import logging
 
 import pandas as pd
 
-from common import utils, cache_manager
+from common import utils, cache_manager, consts
 
 MINIMUM_RETURN = 0.7
 
@@ -15,6 +15,7 @@ def create_strategy(run_id: str, prediction: pd.DataFrame, max_number_of_stocks:
         buy_price = future.iloc[0]
         sell_price = future.iloc[-1]
         profit = sell_price - buy_price
+        profit = profit - consts.IBKR_INVESTMENT_FEE
         symbol_to_profit_percent[symbol] = profit / buy_price * 100
 
     save_symbols_expected_profit(run_id, symbol_to_profit_percent)

@@ -10,10 +10,8 @@ from predictor import (
     random_predictor,
     linear_regression_predictor,
     random_forest_predictor,
-    last_year_predictor,
-    claude_predictor,
     logistic_predictor,
-    lstm_predictor,
+    lstm_predictor, arima_predictor,
 )
 
 
@@ -27,6 +25,7 @@ class PredictorOption(str, Enum):
     claude = "claude"
     logistic = "logistic"
     lstm = "lstm"
+    arima = "arima"
 
 
 option_to_predictor = {
@@ -35,10 +34,9 @@ option_to_predictor = {
     PredictorOption.random: random_predictor,
     PredictorOption.linear_regression: linear_regression_predictor,
     PredictorOption.random_forest: random_forest_predictor,
-    PredictorOption.last_year: last_year_predictor,
-    PredictorOption.claude: claude_predictor,
     PredictorOption.logistic: logistic_predictor,
     PredictorOption.lstm: lstm_predictor,
+    PredictorOption.arima: arima_predictor,
 }
 
 
@@ -56,7 +54,8 @@ def create_prediction(
     if hasattr(predictor, "pre_predict"):
         predictor.pre_predict(stocks, hold_days)
 
-    for symbol in stocks.columns:
+    for i, symbol in enumerate(stocks.columns):
+        # logging.info(f'Handling {i}/{len(stocks.columns)}: {symbol}')
         prediction = predictor.predict(stocks[[symbol]], hold_days)
         predictions[symbol] = prediction
     cache_manager.save_run_file(run_id, cache_manager.CacheFile.prediction, predictions)

@@ -3,9 +3,10 @@ import logging
 import pandas as pd
 
 from common import utils, cache_manager, consts
+from common.consts import MINIMUM_RETURN_THRESHOLD
 
-MINIMUM_RETURN = 0.7
 
+MAXIMUM_RETURN_THRESHOLD = 20
 
 def create_strategy(run_id: str, prediction: pd.DataFrame, max_number_of_stocks: int):
     logging.info("Creating strategy")
@@ -33,10 +34,10 @@ def get_run_strategy(run_id: str) -> list[str]:
 
 
 def _select_symbols(d: dict[str, float], max_number_of_stocks: int) -> list[str]:
-    top_keys = sorted(d.items(), key=lambda item: item[1], reverse=True)[
-        :max_number_of_stocks
-    ]
-    top_keys = [kv[0] for kv in top_keys if kv[1] > MINIMUM_RETURN]
+    top_keys = sorted(d.items(), key=lambda item: item[1], reverse=True)
+    top_keys = [kv[0] for kv in top_keys if MAXIMUM_RETURN_THRESHOLD > kv[1] > MINIMUM_RETURN_THRESHOLD]
+    if len(top_keys) > max_number_of_stocks:
+        return top_keys[:max_number_of_stocks]
     return top_keys
 
 

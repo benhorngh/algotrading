@@ -1,8 +1,10 @@
-from datetime import timedelta
+from datetime import timedelta, date
 from pprint import pprint
 
 from common import stocks, investment_style
 from common.investment_style import InvestmentStyle
+from common.logger_setup import init_logger
+from common.stocks import SYMBOLS, SYMBOLS_50_150, SYMBOLS_150_300
 from steps import evaluate_step, run_workflow
 from steps.prediction_step import PredictorOption
 
@@ -12,10 +14,10 @@ def calculate_predictor_score(
     predictor_option: PredictorOption,
     number_of_tests: int,
     style: InvestmentStyle,
+    max_number_of_stocks_to_buy: int = 3,
 ):
     end_date = style.end_date
     hold_days = style.hold_days
-    max_number_of_stocks_to_buy = 3
     iteration_to_percent = {}
     for i in range(number_of_tests):
         predictor_run_id = run_workflow.run(
@@ -54,12 +56,16 @@ def calculate_predictor_score(
 
 def main():
     calculate_predictor_score(
-        stocks.SYMBOLS_50_150,
-        PredictorOption.lstm,
-        number_of_tests=3,
-        style=investment_style.WEEKLY,
+        SYMBOLS,
+        PredictorOption.prophet,
+        number_of_tests=15,
+        style=InvestmentStyle(
+            end_date=date(year=2024, month=7, day=10), hold_days=30, days_delta=13
+        ),
+        max_number_of_stocks_to_buy=3,
     )
 
 
 if __name__ == "__main__":
+    init_logger()
     main()

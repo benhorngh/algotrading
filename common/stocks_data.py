@@ -6,6 +6,7 @@ import pandas as pd
 import yfinance as yf
 
 from common import cache_manager
+from common.consts import HISTORY_YEARS
 from common.stocks import SYMBOLS
 
 DATE_COL = "Date"
@@ -39,7 +40,7 @@ def filter_by_symbols(df: pd.DataFrame, symbols: list[str]) -> pd.DataFrame:
 
 def filter_by_date(df: pd.DataFrame, cutoff_date: date) -> pd.DataFrame:
     tdf = df[df.index <= str(cutoff_date)]
-    return tdf.tail(365 * 3)
+    return tdf.tail(365 * HISTORY_YEARS)
     # return tdf
 
 
@@ -80,13 +81,7 @@ def _get_current_prices(symbols: list[str]):
 
 
 if __name__ == "__main__":
-    ...
-    # save_stocks(SYMBOLS[:3])
-    # print(filter_by_symbols(read_cache_file(), ['ABT']))
-    # d = date(year=2023, month=8,day=6)
-    # print(filter_by_date(read_cache_file(), d))
-    ...
-    # setup_stocks(SYMBOLS[:10])
-    # d = date(year=2023, month=8, day=6)
+    # setup_stocks(SYMBOLS)  # The file is saved in the wrong place
+    d = date(year=2023, month=8, day=6)
     # get_run_stocks("a123", d, SYMBOLS[:1])
-    _get_current_prices(SYMBOLS)
+    # _get_current_prices(SYMBOLS)

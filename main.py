@@ -1,3 +1,5 @@
+from datetime import date
+
 from steps import run_workflow
 
 from steps.prediction_step import PredictorOption
@@ -13,9 +15,11 @@ def setup():
 def main():
     # setup()
     run_workflow.run(
-        predictor_option=PredictorOption.lstm,
-        symbols=SYMBOLS[:10],
+        predictor_option=PredictorOption.random_forest,
+        symbols=SYMBOLS,
         max_number_of_stocks_to_buy=3,
+        hold_days=30,
+        cutoff_date=date(year=2024, month=5, day=1),
     )
 
 
